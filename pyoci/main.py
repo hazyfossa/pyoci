@@ -1,6 +1,6 @@
 from collections.abc import Sequence
 
-from msgspec import Struct
+from msgspec import Struct, json
 
 from pyoci.common import Annotations
 from pyoci.filesystem import Mount, Root
@@ -32,3 +32,10 @@ class Container(Struct):
     windows: Windows | None = None
     vm: Vm | None = None
     zos: Zos | None = None
+
+    def spec(self) -> bytes:
+        return json.encode(self)
+
+
+def read_spec(spec: bytes | str) -> Container:
+    return json.decode(spec, type=Container)
