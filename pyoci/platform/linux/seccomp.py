@@ -1,12 +1,9 @@
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Literal
+from typing import Literal
 
 from msgspec import Struct
 
-from pyoci.int_types import Uint32
-
-if TYPE_CHECKING:
-    from pyoci.platform.linux.main import Syscall
+from pyoci.int_types import Uint32, Uint64
 
 SeccompOperators = Literal[
     "SCMP_CMP_NE",
@@ -58,6 +55,20 @@ SeccompArch = Literal[
     "SCMP_ARCH_PARISC64",
     "SCMP_ARCH_RISCV64",
 ]
+
+
+class SyscallArg(Struct):
+    index: Uint32
+    value: Uint64
+    op: SeccompOperators
+    valueTwo: Uint64 | None = None
+
+
+class Syscall(Struct):
+    names: Sequence[str]
+    action: SeccompAction
+    errnoRet: Uint32 | None = None
+    args: Sequence[SyscallArg] | None = None
 
 
 class Seccomp(Struct):

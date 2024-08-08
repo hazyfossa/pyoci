@@ -7,7 +7,7 @@ from pyoci.common import IDMapping
 from pyoci.filesystem import FilePath
 from pyoci.int_types import Int64, Uint32, Uint64
 from pyoci.platform.linux.devices import BlockIO, Device, DeviceCgroup
-from pyoci.platform.linux.seccomp import Seccomp, SeccompAction, SeccompOperators
+from pyoci.platform.linux.seccomp import Seccomp
 from pyoci.process.main import Pids
 
 
@@ -27,20 +27,6 @@ class IntelRdt(Struct):
     memBwSchema: Annotated[str, Meta(pattern="^MB:[^\\n]*$")] | None = None
     enableCMT: bool | None = None
     enableMBM: bool | None = None
-
-
-class SyscallArg(Struct):
-    index: Uint32
-    value: Uint64
-    op: SeccompOperators
-    valueTwo: Uint64 | None = None
-
-
-class Syscall(Struct):
-    names: Sequence[str]
-    action: SeccompAction
-    errnoRet: Uint32 | None = None
-    args: Sequence[SyscallArg] | None = None
 
 
 class NetworkInterfacePriority(Struct):
@@ -99,9 +85,7 @@ class Resources(Struct):
     rdma: Mapping[str, Rdma] | None = None
 
 
-NamespaceType = Literal[
-    "mount", "pid", "network", "uts", "ipc", "user", "cgroup", "time"
-]
+NamespaceType = Literal["mount", "pid", "network", "uts", "ipc", "user", "cgroup", "time"]
 
 
 class NamespaceReference(Struct):
