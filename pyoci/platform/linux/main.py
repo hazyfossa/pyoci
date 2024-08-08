@@ -7,8 +7,8 @@ from pyoci.common import IDMapping
 from pyoci.filesystem import FilePath
 from pyoci.int_types import Int64, Uint32, Uint64
 from pyoci.platform.linux.devices import BlockIO, Device, DeviceCgroup
+from pyoci.platform.linux.seccomp import Seccomp, SeccompAction, SeccompOperators
 from pyoci.process.main import Pids
-from linux.seccomp import Seccomp, SeccompAction, SeccompOperators
 
 
 class TimeOffsets(Struct):

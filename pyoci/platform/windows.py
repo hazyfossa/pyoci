@@ -3,7 +3,6 @@ from typing import Any, Literal
 
 from msgspec import Struct
 
-
 from pyoci.filesystem import FilePath
 from pyoci.int_types import Uint16, Uint64
 

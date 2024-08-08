@@ -5,8 +5,8 @@ from msgspec import Meta, Struct, field
 
 from pyoci.common import GID, UID, Env
 from pyoci.int_types import Int32, Int64, Uint32, Uint64
-from process.capabilities import Capabilities
-from process.scheduler import Scheduler
+from pyoci.process.capabilities import Capabilities
+from pyoci.process.scheduler import Scheduler
 
 Umask = Uint32
 

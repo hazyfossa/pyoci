@@ -1,1 +1,1 @@
-from .main import Linux
+from pyoci.platform.linux.main import Linux

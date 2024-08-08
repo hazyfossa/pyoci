@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from typing import Literal
 
-from int_types import Int32, Uint64
+from pyoci.int_types import Int32, Uint64
 from msgspec import Struct
 
 SchedulerPolicy = Literal[
