@@ -21,7 +21,7 @@ FileType = Annotated[
 ]
 
 
-class Device(Struct):
+class Device(Struct, omit_defaults=True):
     type: FileType
     path: FilePath
     fileMode: FileMode | None = None
@@ -31,7 +31,7 @@ class Device(Struct):
     gid: GID | None = None
 
 
-class DeviceCgroup(Struct):
+class DeviceCgroup(Struct, omit_defaults=True):
     allow: bool
     type: str | None = None
     major: Major | None = None
@@ -39,7 +39,7 @@ class DeviceCgroup(Struct):
     access: str | None = None
 
 
-class BlockIODevice(Struct):
+class BlockIODevice(Struct, omit_defaults=True):
     major: Major
     minor: Minor
 
@@ -56,7 +56,7 @@ class BlockIODeviceWeight(BlockIODevice):
     leafWeight: Weight | None = None
 
 
-class BlockIO(Struct):
+class BlockIO(Struct, omit_defaults=True):
     weight: Weight | None = None
     leafWeight: Weight | None = None
     throttleReadBpsDevice: Sequence[BlockIODeviceThrottle] | None = None

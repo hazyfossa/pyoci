@@ -57,21 +57,21 @@ SeccompArch = Literal[
 ]
 
 
-class SyscallArg(Struct):
+class SyscallArg(Struct, omit_defaults=True):
     index: Uint32
     value: Uint64
     op: SeccompOperators
     valueTwo: Uint64 | None = None
 
 
-class Syscall(Struct):
+class Syscall(Struct, omit_defaults=True):
     names: Sequence[str]
     action: SeccompAction
     errnoRet: Uint32 | None = None
     args: Sequence[SyscallArg] | None = None
 
 
-class Seccomp(Struct):
+class Seccomp(Struct, omit_defaults=True):
     defaultAction: SeccompAction
     defaultErrnoRet: Uint32 | None = None
     flags: Sequence[SeccompFlag] | None = None

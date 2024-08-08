@@ -11,17 +11,17 @@ from pyoci.platform.linux.seccomp import Seccomp
 from pyoci.process.main import Pids
 
 
-class TimeOffsets(Struct):
+class TimeOffsets(Struct, omit_defaults=True):
     secs: Int64 | None = None
     nanosecs: Uint32 | None = None
 
 
-class PlatformTimeOffsets(Struct):
+class PlatformTimeOffsets(Struct, omit_defaults=True):
     boottime: TimeOffsets | None = None
     monotonic: TimeOffsets | None = None
 
 
-class IntelRdt(Struct):
+class IntelRdt(Struct, omit_defaults=True):
     closID: str | None = None
     l3CacheSchema: str | None = None
     memBwSchema: Annotated[str, Meta(pattern="^MB:[^\\n]*$")] | None = None
@@ -29,17 +29,17 @@ class IntelRdt(Struct):
     enableMBM: bool | None = None
 
 
-class NetworkInterfacePriority(Struct):
+class NetworkInterfacePriority(Struct, omit_defaults=True):
     name: str
     priority: Uint32
 
 
-class Network(Struct):
+class Network(Struct, omit_defaults=True):
     classID: Uint32 | None = None
     priorities: Sequence[NetworkInterfacePriority] | None = None
 
 
-class Memory(Struct):
+class Memory(Struct, omit_defaults=True):
     kernel: Int64 | None = None
     kernelTCP: Int64 | None = None
     limit: Int64 | None = None
@@ -51,12 +51,12 @@ class Memory(Struct):
     checkBeforeUpdate: bool | None = None
 
 
-class HugepageLimit(Struct):
+class HugepageLimit(Struct, omit_defaults=True):
     pageSize: Annotated[str, Meta(pattern="^[1-9][0-9]*[KMG]B$")]
     limit: Uint64
 
 
-class Cpu(Struct):
+class Cpu(Struct, omit_defaults=True):
     cpus: str | None = None
     mems: str | None = None
     period: Uint64 | None = None
@@ -68,12 +68,12 @@ class Cpu(Struct):
     idle: Int64 | None = None
 
 
-class Rdma(Struct):
+class Rdma(Struct, omit_defaults=True):
     hcaHandles: Uint32 | None = None
     hcaObjects: Uint32 | None = None
 
 
-class Resources(Struct):
+class Resources(Struct, omit_defaults=True):
     unified: Mapping[str, str] | None = None
     devices: Sequence[DeviceCgroup] | None = None
     pids: Pids | None = None
@@ -88,7 +88,7 @@ class Resources(Struct):
 NamespaceType = Literal["mount", "pid", "network", "uts", "ipc", "user", "cgroup", "time"]
 
 
-class NamespaceReference(Struct):
+class NamespaceReference(Struct, omit_defaults=True):
     type: NamespaceType
     path: FilePath | None = None
 
@@ -96,12 +96,12 @@ class NamespaceReference(Struct):
 RootfsPropagation = Literal["private", "shared", "slave", "unbindable"]
 
 
-class Personality(Struct):
+class Personality(Struct, omit_defaults=True):
     domain: Literal["LINUX", "LINUX32"] | None = None
     flags: Sequence[str] | None = None
 
 
-class Linux(Struct):
+class Linux(Struct, omit_defaults=True):
     """
     Linux platform-specific configurations
     """

@@ -25,7 +25,7 @@ SchedulerFlag = Literal[
 ]
 
 
-class Scheduler(Struct):
+class Scheduler(Struct, omit_defaults=True):
     policy: SchedulerPolicy
     nice: Int32 | None = None
     priority: Int32 | None = None

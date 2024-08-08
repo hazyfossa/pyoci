@@ -3,7 +3,7 @@ from collections.abc import Sequence
 from msgspec import Struct
 
 
-class AnetItem(Struct):
+class AnetItem(Struct, omit_defaults=True):
     linkname: str | None = None
     lowerLink: str | None = None
     allowedAddress: str | None = None
@@ -13,16 +13,16 @@ class AnetItem(Struct):
     linkProtection: str | None = None
 
 
-class CappedMemory(Struct):
+class CappedMemory(Struct, omit_defaults=True):
     physical: str | None = None
     swap: str | None = None
 
 
-class CappedCPU(Struct):
+class CappedCPU(Struct, omit_defaults=True):
     ncpus: str | None = None
 
 
-class Solaris(Struct):
+class Solaris(Struct, omit_defaults=True):
     """
     Solaris platform-specific configurations
     """

@@ -7,7 +7,7 @@ from pyoci.common import IDMapping
 FilePath = str
 
 
-class Root(Struct):
+class Root(Struct, omit_defaults=True):
     """
     Configures the container's root filesystem.
     """
@@ -16,7 +16,7 @@ class Root(Struct):
     readonly: bool | None = None
 
 
-class Mount(Struct):
+class Mount(Struct, omit_defaults=True):
     destination: FilePath
     source: FilePath | None = None
     options: Sequence[str] | None = None

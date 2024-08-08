@@ -17,10 +17,8 @@ class Rlimit(Struct):
     type: Annotated[str, Meta(pattern="^RLIMIT_[A-Z]+$")]
 
 
-class IoPriority(Struct):
-    class_: Literal["IOPRIO_CLASS_RT", "IOPRIO_CLASS_BE", "IOPRIO_CLASS_IDLE"] = field(
-        name="class"
-    )
+class IoPriority(Struct, omit_defaults=True):
+    class_: Literal["IOPRIO_CLASS_RT", "IOPRIO_CLASS_BE", "IOPRIO_CLASS_IDLE"] = field(name="class")
     priority: Int32 | None = None
 
 
@@ -29,12 +27,12 @@ class ConsoleSize(Struct):
     width: Uint64
 
 
-class ExecCPUAffinity(Struct):
+class ExecCPUAffinity(Struct, omit_defaults=True):
     initial: Annotated[str, Meta(pattern="^[0-9, -]*$")] | None = None
     final: Annotated[str, Meta(pattern="^[0-9, -]*$")] | None = None
 
 
-class User(Struct):
+class User(Struct, omit_defaults=True):
     uid: UID | None = None
     gid: GID | None = None
     umask: Umask | None = None
@@ -46,7 +44,7 @@ class Pids(Struct):
     limit: Int64
 
 
-class Process(Struct):
+class Process(Struct, omit_defaults=True):
     cwd: str
     args: Sequence[str] | None = None
     commandLine: str | None = None
