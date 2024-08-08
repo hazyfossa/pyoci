@@ -14,10 +14,6 @@ from pyoci.runtime_hooks import Hooks
 
 
 class Container(Struct, omit_defaults=True):
-    """
-    Open Container Initiative Runtime Specification Container Configuration
-    """
-
     ociVersion: str
     hooks: Hooks | None = None
     annotations: Annotations | None = None
