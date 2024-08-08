@@ -9,4 +9,5 @@ Int64 = Annotated[int, Meta(ge=-9223372036854775808, le=9223372036854775807)]
 Uint8 = Annotated[int, Meta(ge=0, le=255)]
 Uint16 = Annotated[int, Meta(ge=0, le=65535)]
 Uint32 = Annotated[int, Meta(ge=0, le=4294967295)]
-Uint64 = Annotated[int, Meta(ge=0, le=18446744073709551615)]
+# Uint64 = Annotated[int, Meta(ge=0, le=18446744073709551615)] Msgspec doesn't support 'le' on values that won't fit into Int64
+Uint64 = Annotated[int, Meta(ge=0), "le=18446744073709551615"]
