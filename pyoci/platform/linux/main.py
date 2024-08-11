@@ -8,7 +8,6 @@ from pyoci.filesystem import FilePath
 from pyoci.int_types import Int64, Uint32, Uint64
 from pyoci.platform.linux.devices import BlockIO, Device, DeviceCgroup
 from pyoci.platform.linux.seccomp import Seccomp
-from pyoci.process.main import Pids
 
 
 class TimeOffsets(Struct, omit_defaults=True):
@@ -71,6 +70,10 @@ class Cpu(Struct, omit_defaults=True):
 class Rdma(Struct, omit_defaults=True):
     hcaHandles: Uint32 | None = None
     hcaObjects: Uint32 | None = None
+
+
+class Pids(Struct):
+    limit: Int64
 
 
 class Resources(Struct, omit_defaults=True):

@@ -40,10 +40,6 @@ class User(Struct, omit_defaults=True):
     username: str | None = None
 
 
-class Pids(Struct):
-    limit: Int64
-
-
 class Process(Struct, omit_defaults=True):
     cwd: str
     args: Sequence[str] | None = None
