@@ -79,3 +79,12 @@ class Seccomp(Struct, omit_defaults=True):
     listenerMetadata: str | None = None
     architectures: Sequence[SeccompArch] | None = None
     syscalls: Sequence[Syscall] | None = None
+
+
+class SeccompFeature(Struct):
+    enabled: bool | None = None
+    actions: Sequence[SeccompAction] | None = None
+    operators: Sequence[SeccompOperators] | None = None
+    archs: Sequence[SeccompArch] | None = None
+    knownFlags: Sequence[SeccompFlag] | None = None
+    supportedFlags: Sequence[SeccompFlag] | None = None
